@@ -211,17 +211,165 @@ for (let i = 0; i < arr.length; i++) {
 
 /*
 =================================================================
-PRACTICE PROBLEMS TO SOLVE NEXT:
+PRACTICE PROBLEMS WITH SOLUTIONS:
+=================================================================
+*/
+
+// PROBLEM 1: Find smallest element in array
+// Input: [1, 8, 7, 56, 90] → Output: 1
+function smallest(arr) {
+  let min = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < min) {
+      // Change > to <
+      min = arr[i];
+    }
+  }
+  return min;
+}
+
+// PROBLEM 2: Find sum of all elements
+// Input: [1, 8, 7, 56, 90] → Output: 162
+function sum(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total = total + arr[i]; // or total += arr[i]
+  }
+  return total;
+}
+
+// PROBLEM 3: Count elements greater than 10
+// Input: [1, 8, 7, 56, 90] → Output: 2 (56 and 90)
+function countGreaterThan10(arr) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 10) {
+      count++; // Same as count = count + 1
+    }
+  }
+  return count;
+}
+
+// PROBLEM 4: Check if array contains a number
+// Input: arr=[1,8,7,56,90], find=8 → Output: true
+function contains(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return true; // Found it!
+    }
+  }
+  return false; // Not found
+}
+
+// PROBLEM 5: Find average of all numbers
+// Input: [1, 8, 7, 56, 90] → Output: 32.4
+function average(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i];
+  }
+  return total / arr.length; // Sum divided by count
+}
+
+// PROBLEM 6: Find second largest element
+// Input: [1, 8, 7, 56, 90] → Output: 56
+function secondLargest(arr) {
+  let max = arr[0];
+  let secondMax = arr[0];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      secondMax = max; // Old max becomes second
+      max = arr[i]; // New max
+    } else if (arr[i] > secondMax && arr[i] < max) {
+      secondMax = arr[i]; // New second max
+    }
+  }
+  return secondMax;
+}
+
+// PROBLEM 7: Reverse array manually
+// Input: [1, 8, 7, 56, 90] → Output: [90, 56, 7, 8, 1]
+function reverseArray(arr) {
+  let reversed = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    // Start from end
+    reversed.push(arr[i]);
+  }
+  return reversed;
+}
+
+// PROBLEM 8: Count specific number occurrences
+// Input: [5, 5, 3, 5, 1], find=5 → Output: 3
+function countOccurrences(arr, target) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      count++;
+    }
+  }
+  return count;
+}
+
+/*
+=================================================================
+COMMON QUESTIONS & ANSWERS:
 =================================================================
 
-1. Find smallest element in array
-2. Find sum of all elements  
-3. Count how many elements are greater than 10
-4. Find second largest element
-5. Check if array contains a specific number
-6. Remove duplicates from array
-7. Reverse an array manually
-8. Find average of all numbers
+Q: Why start loop from i=1 in largest function?
+A: Because we already took arr[0] as initial max. Starting from i=1 
+   avoids comparing first element with itself.
+
+Q: What happens if array is empty []?
+A: arr[0] will be undefined, causing errors. Always check:
+   if (arr.length === 0) return null;
+
+Q: Why use i++ instead of i = i + 1?
+A: Both work the same. i++ is shorter and more common in programming.
+
+Q: What's difference between == and ===?
+A: == compares values (5 == "5" is true)
+   === compares values AND types (5 === "5" is false)
+   Always use === for safety!
+
+Q: Can I use arr.length inside the loop condition?
+A: Yes! for(let i=0; i<arr.length; i++) is standard and efficient.
+
+Q: What if arr[i] is undefined?
+A: Comparisons with undefined give unexpected results. Always validate
+   your array has the expected data.
+
+Q: How to handle negative numbers?
+A: Same logic works! -5 > -10 is true. Your algorithm handles all numbers.
+
+Q: Why is manual loop faster than Math.max()?
+A: Math.max(...arr) has overhead from spread operator and function calls.
+   Simple loops are often faster for basic operations.
+
+=================================================================
+DEBUGGING TIPS:
+=================================================================
+
+// Add console.log to see what's happening:
+function largest(arr) {
+    let max = arr[0];
+    console.log("Starting max:", max);
+    
+    for (let i = 1; i < arr.length; i++) {
+        console.log("Checking:", arr[i], "vs current max:", max);
+        if (arr[i] > max) {
+            max = arr[i];
+            console.log("New max found:", max);
+        }
+    }
+    return max;
+}
+
+// Test with different inputs:
+console.log(largest([1, 8, 7, 56, 90]));     // Expected: 90
+console.log(largest([5, 5, 5, 5]));          // Expected: 5  
+console.log(largest([10]));                  // Expected: 10
+console.log(largest([-1, -5, -3]));          // Expected: -1
 
 Your foundation is strong! Keep practicing these patterns.
 Time to beat: 0.45 (your current best!)
